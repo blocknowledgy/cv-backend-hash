@@ -46,6 +46,8 @@ const port = process.env.PORT || 5000;
       */
 console.log(req.body.description + ', file: ' + req.file.filename);
 
+	let calculatedHash;
+
 fs.readFile('uploads/' + req.file.filename, 
               function(err, data) {
      if (err)
@@ -55,11 +57,17 @@ fs.readFile('uploads/' + req.file.filename,
 
 	console.log('Contents: ');
 	console.log(contents);
+
+	calculatedHash = '0xababab01';
+
+	console.log('Response: ' + res);
+
+	//res.json({ hash: calculatedHash });
      }
  });
+	res.json({ hash: calculatedHash });
 
-
-      res.send();
+      //res.send();
     });
 
     app.listen(port, () => console.log(`Server listening on port ${port}`));
